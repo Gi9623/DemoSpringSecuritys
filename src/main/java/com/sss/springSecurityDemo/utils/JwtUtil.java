@@ -84,11 +84,12 @@ public class JwtUtil {
 //        Claims claims = parseJWT(token);
 //        System.out.println(claims);
 //        eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5Mzk2NWM0YWY0NzE0NmJjOTNjMWE4ZDE2YjNhZDgwOCIsInN1YiI6IjEyMzQ1NiIsImlzcyI6InNnIiwiaWF0IjoxNjc3MjI5NzQwLCJleHAiOjE2NzcyMzMzNDB9.hGbZhEfF4KoC8QKu0cOBzMFetTJiyXjt2Mrws4FeoDo
-        String jwt = createJWT("id");
+        String jwt = createJWT("123456");
         System.out.println(jwt);
+        System.out.println("----------------------------");
         //eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2ZTJkYWEyNTA5MDY0YzgwYTI0NWMzNzU2ZTE3MjZjMSIsInN1YiI6IjEyMzQ1NiIsImlzcyI6InNnIiwiaWF0IjoxNjc3NDc4NTQ1LCJleHAiOjE2Nzc0ODIxNDV9.6HAkeHgOdhtBO5H075uyRPfl2kgOkcaIJ0VNlMLtfY0
         // $2a$10$.dBsBvFu0gW85FNEyKy3I..6i6nLTg9KPBhcUcu0sMyCvr/UclShi
-//        Claims claims = parseJWT("eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2ZTJkYWEyNTA5MDY0YzgwYTI0NWMzNzU2ZTE3MjZjMSIsInN1YiI6IjEyMzQ1NiIsImlzcyI6InNnIiwiaWF0IjoxNjc3NDc4NTQ1LCJleHAiOjE2Nzc0ODIxNDV9.6HAkeHgOdhtBO5H075uyRPfl2kgOkcaIJ0VNlMLtfY0");
+//        Claims claims = parseJWT("$2a$10$.dBsBvFu0gW85FNEyKy3I..6i6nLTg9KPBhcUcu0sMyCvr/UclShi");
 //        System.out.println(claims);
         System.out.println(parseJWT(jwt));
     }

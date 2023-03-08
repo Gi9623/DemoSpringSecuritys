@@ -23,10 +23,16 @@ public class HelloController {
     @Autowired
     private UserMapper userMapper;
 
-    @RequestMapping("hello")
-    @PreAuthorize("hasAnyAuthority('hello')")
-    public String test(@RequestBody User user) {
-        return "hello word";
+    @RequestMapping("/hello")
+    @PreAuthorize("hasAuthority('test')")
+    public String hello(){
+        return "hello";
+    }
+
+    @RequestMapping("hello3")
+    @PreAuthorize("hasAuthority('test3')")
+    public String test3(@RequestBody User user) {
+        return "hello word3";
     }
 
     @RequestMapping("hello2")

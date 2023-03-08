@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @program: DemoSpringSecurity
@@ -20,7 +21,6 @@ import java.util.List;
  **/
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class LoginUser implements UserDetails {
 
     private User user;
@@ -28,8 +28,9 @@ public class LoginUser implements UserDetails {
     //存储权限信息
     private List<String> permissions;
 
+    //存储SpringSecurity所需要的权限信息的集合
     @JSONField(serialize = false)
-    private List<SimpleGrantedAuthority> permissions;
+    private List<GrantedAuthority> authorities;
 
     public LoginUser(User user, List<String> permissions) {
         this.user = user;
@@ -38,8 +39,14 @@ public class LoginUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        return null;
+        if (authorities != null) {
+            return authorities;
+        }
+        //把permissions中字符串类型的权限信息转换成GrantedAuthority对象存入authorities中
+        authorities = permissions.stream().
+                map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+        return authorities;
     }
 
     @Override
