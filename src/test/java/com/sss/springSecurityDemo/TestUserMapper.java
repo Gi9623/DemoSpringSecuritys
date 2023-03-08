@@ -1,11 +1,14 @@
 package com.sss.springSecurityDemo;
 
 import com.sss.springSecurityDemo.config.SecurityConfig;
+import com.sss.springSecurityDemo.mapper.MenuMapper;
 import com.sss.springSecurityDemo.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.List;
 
 /**
  * @program: DemoSpringSecurity
@@ -19,10 +22,19 @@ public class TestUserMapper {
     private UserMapper userMapper;
 
     @Autowired
+    private MenuMapper menuMapper;
+
+    @Autowired
     private SecurityConfig securityConfig;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Test
+    public void test3(){
+        List<String> strings = menuMapper.selectPermsByUserId(1L);
+        System.out.println(strings);
+    }
 
     @Test
     public void test2(){
@@ -32,7 +44,6 @@ public class TestUserMapper {
         System.out.println(bCryptPasswordEncoder.encode("123456"));
         System.out.println(bCryptPasswordEncoder.matches("123456", "$2a$10$.dBsBvFu0gW85FNEyKy3I..6i6nLTg9KPBhcUcu0sMyCvr/UclShi"));
         System.out.println(bCryptPasswordEncoder.matches("1234562", "$2a$10$.dBsBvFu0gW85FNEyKy3I..6i6nLTg9KPBhcUcu0sMyCvr/UclShi"));
-
     }
 
     @Test

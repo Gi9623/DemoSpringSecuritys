@@ -3,6 +3,7 @@ package com.sss.springSecurityDemo.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.sss.springSecurityDemo.domain.LoginUser;
 import com.sss.springSecurityDemo.domain.User;
+import com.sss.springSecurityDemo.mapper.MenuMapper;
 import com.sss.springSecurityDemo.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +27,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private MenuMapper menuMapper;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //根据名字查库
@@ -37,7 +41,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new RuntimeException("用户名或者密码错误");
         }
         //TODO 根据用户查询权限信息 添加到LoginUser中
-        List<String> list = new ArrayList<>(Arrays.asList("test"));
+//        List<String> list = new ArrayList<>(Arrays.asList("test"));
+        List<String> list = menuMapper.selectPermsByUserId(user.getId());
         //返回user
         return new LoginUser(user, list);
     }

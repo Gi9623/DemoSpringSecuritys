@@ -24,7 +24,7 @@ public class HelloController {
     private UserMapper userMapper;
 
     @RequestMapping("/hello")
-    @PreAuthorize("hasAuthority('test')")
+    @PreAuthorize("hasAuthority('sys:test1')")
     public String hello(){
         return "hello";
     }
